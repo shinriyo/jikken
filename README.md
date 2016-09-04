@@ -10,6 +10,16 @@ mix phoenix.gen.json SubCategory sub_categories category_id:references:categorie
 mix phoenix.gen.json Book books title:string publish:date sub_category_id:references:sub_categories author_id:references:authors
 ```
 
+AuthorConrtoller
+```
+  def get_author_number(conn, _params) do
+    authors = Repo.all(Author)
+    text(conn, length(authors))
+  end
+```
+
+ open  priv/repo/migrations/
+  
 ```
 mix phoenix.gen.json Category categories name:string
 mix phoenix.gen.json Author authors first_name:string last_name:string

@@ -16,11 +16,19 @@ defmodule Jikken.Router do
   scope "/", Jikken do
     pipe_through :browser # Use the default browser stack
 
+    # get "/book_create", BookController, :new
+    get "/api/authors/get_author_number", AuthorController, :get_author_number
     get "/", PageController, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", Jikken do
+  scope "/api", Jikken do
+    #  get "/authors/get_author_number", AuthorController, :get_author_number
+      # resources "/books", BookController, except: [:new, :edit]
+      resources "/categories", CategoryController, except: [:new, :edit]
+      resources "/books", BookController, except: [:new, :edit]
+      resources "/sub_categories", SubCategoryController, except: [:new, :edit]
+      resources "/authors", AuthorController, except: [:new, :edit]
   #   pipe_through :api
-  # end
+  end
 end
