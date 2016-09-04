@@ -39,7 +39,8 @@ var NotFound = React.createClass({
     );
   }
 });
-class Blog extends React.Component {
+
+class App extends React.Component {
   render() {
     return (
       <div className='container'>
@@ -65,7 +66,7 @@ const Post = props => {
 };
 var routes = (
   <Router history={browserHistory}>
-    <Route path="/" component={Blog}>              //Indexページ
+    <Route  path="/" component={App}>
     </Route>
   </Router>
 );
