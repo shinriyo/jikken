@@ -8,11 +8,20 @@
     <meta name="author" content="">
 
     <title>Hello Jikken!</title>
+
+    <!-- コレは自家 -->
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/normalize.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/skeleton.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.min.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/cssloader.css") %>">
+ 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
-    <div id="root">
+    <h1>Hello, React - Redux!</h1>
+    <div class="container" id="content">
     </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

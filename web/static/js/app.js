@@ -1,80 +1,56 @@
+import "phoenix_html"
+import $ from "jquery" // ←phoenix_htmlの下に追加
+
 import React from 'react'
 import { render } from 'react-dom'
-import { hashHistory, Router, Route, Link, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link } from 'react-router'
 
-var IndexRoute = Router.IndexRoute;
+import { Provider } from 'react-redux'
 
-var Index = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <header>
-          this is header
-        </header>
-        {this.props.children}              //routerで切り替えたい箇所
-        <footer>
-          this is footer
-        </footer>
-      </div>
-    );
-  }
-});
+import store from './store'
+import { history } from './store'
 
-var Entrance = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <span>ENTRANCE</span>
-      </div>
-    );
-  }
-});
+import App from './components/app';
+import BookPanel from './components/BookPanel';
+import AuthorPanel from './components/AuthorPanel';
+import BookForm from './components/BookForm';
+import AuthorForm from './components/AuthorForm';
 
-var NotFound = React.createClass({
-  render: function () {
-    return (
-      <div>
-        <span>NOT FOUND</span>
-      </div>
-    );
-  }
-});
+import schedule from './scheduler';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className='container'>
-      これいい
-      </div>
-    );
-  }
+const About = () => {
+    return <div>
+        <h2>About</h2>
+        <Link to="/">Home</Link>
+    </div>
 }
 
-// 1つ1つの投稿
-const Post = props => {
-  return (
-    <div className='panel panel-default'>
-      <div className='panel-heading'>
-        <h4 className='panel-title'>{props.data.title}</h4>
-      </div>
-      <div className='panel-body'>
-        {props.data.body}
-        <input className='btn btn-default pull-right' type='submit' value='delete' />
-      </div>
+const NoMatch = () => {
+    return <div>
+        <h2>No match</h2>
+        <Link to="/">Home</Link>
     </div>
-  );
-};
-var routes = (
-  <Router history={browserHistory}>
-    <Route  path="/" component={App}>
-    </Route>
-  </Router>
-);
+}
 
-
-// Declarative route configuration (could also load this config lazily
-// instead, all you really need is a single root route, you don't need to
-// colocate the entire config).
 render((
-    routes
-), document.getElementById('root'))
+    <Provider store={store}>
+        <Router history={history}>
+            <Route path="/" component={App}>
+                <IndexRoute component={BookPanel}/>
+                <Route path="/book_create/" component={BookForm} />
+                <Route path="/book_update/:id" component={BookForm} />
+                
+                <Route path="/authors/" component={AuthorPanel} />
+                <Route path="/author_create/" component={AuthorForm} />
+                <Route path="/author_update/:id" component={AuthorForm} />
+                
+                <Route path="/about" component={About}/>
+                <Route path="*" component={NoMatch}/>
+            </Route>
+        </Router>
+    </Provider>
+  ), document.getElementById('content')
+)
+
+
+schedule();
