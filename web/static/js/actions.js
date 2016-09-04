@@ -169,7 +169,8 @@ export function loadBooks(page=1) {
     return (dispatch, getState) => {
         let state = getState();
         let { page, sorting, search } = state.books
-        let url = `//127.0.0.1:8000/api/books/?format=json&page=${page}`;
+        // let url = `//127.0.0.1:8000/api/books/?format=json&page=${page}`;
+        let url = `api/books/?format=json&page=${page}`;
         if(sorting) {
             url+=`&ordering=${sorting}`
         }
@@ -189,7 +190,8 @@ export function loadBooks(page=1) {
 
 export function loadBook(id) {
     return (dispatch, getState) => {
-        let url = `//127.0.0.1:8000/api/books/${id}/?format=json`;
+        // let url = `//127.0.0.1:8000/api/books/${id}/?format=json`;
+        let url = `api/books/${id}/?format=json`;
         dispatch(loadingChanged(true));
         $.get(url, function(data) {
             dispatch(showBookResult(data));
@@ -201,7 +203,8 @@ export function loadBook(id) {
 
 export function loadAuthors(page=1) {
     return (dispatch, getState) => {
-        let url = `//127.0.0.1:8000/api/authors/?format=json&page=${page}`;
+        // let url = `//127.0.0.1:8000/api/authors/?format=json&page=${page}`;
+        let url = `api/authors/?format=json&page=${page}`;
         dispatch(loadingChanged(true));
         $.get(url, data => {
             setTimeout(() => {
@@ -215,7 +218,8 @@ export function loadAuthors(page=1) {
 
 export function loadAuthor(id) {
     return (dispatch, getState) => {
-        let url = `//127.0.0.1:8000/api/authors/${id}/?format=json`;
+        // let url = `//127.0.0.1:8000/api/authors/${id}/?format=json`;
+        let url = `api/authors/${id}/?format=json`;
         dispatch(loadingChanged(true));
         $.get(url, function(data) {
             dispatch(showAuthorResult(data));
@@ -226,7 +230,8 @@ export function loadAuthor(id) {
 
 export function loadCategories() {
     return (dispatch, getState) => {
-        let url = '//127.0.0.1:8000/api/categories/?format=json';
+        // let url = '//127.0.0.1:8000/api/categories/?format=json';
+        let url = 'api/categories/?format=json';
 
         $.get(url, data => {
             dispatch(showCategoriesResult(data));
@@ -241,7 +246,8 @@ export function loadSubCategories(category) {
             dispatch(showSubCategoriesResult([]));
             return 
         }
-        let url = `//127.0.0.1:8000/api/subcategories/?format=json&category=${category}`;
+        // let url = `//127.0.0.1:8000/api/subcategories/?format=json&category=${category}`;
+        let url = `api/subcategories/?format=json&category=${category}`;
 
         $.get(url, data => {
             dispatch(showSubCategoriesResult(data));

@@ -7,7 +7,8 @@ export default () => {
     console.log("Starting scheduler")
     window.setInterval( () => {
         
-        let url = 'http://127.0.0.1:8000/api/authors/get_author_number/';
+        // let url = 'http://127.0.0.1:8000/api/authors/get_author_number/';
+        let url = 'api/authors/get_author_number/';
         $.get(url, realAuthorNumber => {
             let authorNumber = store.getState().authors.rows.length;
             if(authorNumber!=realAuthorNumber) {
