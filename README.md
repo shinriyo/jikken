@@ -2,6 +2,21 @@
 
 SQLite
 
+idつけた
+```
+mix phoenix.gen.json Category categories name:string
+mix phoenix.gen.json Author authors first_name:string last_name:string
+mix phoenix.gen.json SubCategory sub_categories category_id:references:categories name:string
+mix phoenix.gen.json Book books title:string publish:date sub_category_id:references:sub_categories author_id:references:authors
+```
+
+```
+mix phoenix.gen.json Category categories name:string
+mix phoenix.gen.json Author authors first_name:string last_name:string
+mix phoenix.gen.json SubCategory sub_categories category:references:categories name:string
+mix phoenix.gen.json Book books title:string publish:date sub_category:references:sub_categories author:references:authors
+```
+
 To start your Phoenix app:
 
   * Install dependencies with `mix deps.get`
