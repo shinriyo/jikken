@@ -35,9 +35,11 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :jikken, Jikken.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "jikken_dev",
-  hostname: "localhost",
-  pool_size: 10
+  #adapter: Ecto.Adapters.Postgres,
+  #username: "postgres",
+  #password: "postgres",
+  #database: "jikken_dev",
+  #hostname: "localhost",
+  #pool_size: 10
+  adapter: Sqlite.Ecto,
+  database: "jikken_dev.sqlite3"

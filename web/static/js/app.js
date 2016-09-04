@@ -1,45 +1,79 @@
-var React = require('react');
-var Router = require('react-router'); 
-var DefaultRoute = Router.DefaultRoute;
-var Link = Router.Link;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
+import React from 'react'
+import { render } from 'react-dom'
+import { hashHistory, Router, Route, Link, browserHistory } from 'react-router'
 
-var App = React.createClass({
+var IndexRoute = Router.IndexRoute;
+
+var Index = React.createClass({
   render: function () {
     return (
       <div>
         <header>
-          <ul>
-            <li><Link to="app">Dashboard</Link></li>
-            <li><Link to="inbox">Inbox</Link></li>
-            <li><Link to="calendar">Calendar</Link></li>
-          </ul>
-          Logged in as Jane
+          this is header
         </header>
-
-//<RouteHandler/>コンポーネントをrenderすることで、
-//ルーティングで定義された全てのアクティブな子コンポーネントを呼び出す。        
-        <RouteHandler/>
+        {this.props.children}              //routerで切り替えたい箇所
+        <footer>
+          this is footer
+        </footer>
       </div>
     );
   }
 });
 
-//アプリケーションのurlの階層構造をネストされた<Route/>タグで定義し、
-//各<Route/>のhandlerにReactのコンポーネントを紐付け、
-//render時には、アクティブな<Route/>のhandlerがコンポーネントを呼び出し、
-//それらが融合されて表出される。
+var Entrance = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <span>ENTRANCE</span>
+      </div>
+    );
+  }
+});
+
+var NotFound = React.createClass({
+  render: function () {
+    return (
+      <div>
+        <span>NOT FOUND</span>
+      </div>
+    );
+  }
+});
+class Blog extends React.Component {
+  render() {
+    return (
+      <div className='container'>
+      これいい
+      </div>
+    );
+  }
+}
+
+// 1つ1つの投稿
+const Post = props => {
+  return (
+    <div className='panel panel-default'>
+      <div className='panel-heading'>
+        <h4 className='panel-title'>{props.data.title}</h4>
+      </div>
+      <div className='panel-body'>
+        {props.data.body}
+        <input className='btn btn-default pull-right' type='submit' value='delete' />
+      </div>
+    </div>
+  );
+};
 var routes = (
-  <Route name="app" path="/" handler={App}>
-    <Route name="inbox" handler={Inbox}/>
-    <Route name="calendar" handler={Calendar}/>
-    <DefaultRoute handler={Dashboard}/>
-  </Route>
+  <Router history={browserHistory}>
+    <Route path="/" component={Blog}>              //Indexページ
+    </Route>
+  </Router>
 );
 
-//React RouterはリクエストされたURLに最も深くマッチする<Route/>を探し出し、
-//その木構造の中での枝に含まれる全ての<Route/>をアクティブにする。
-Router.run(routes, function (Handler) {
-  React.render(<Handler/>, document.body);
-});
+
+// Declarative route configuration (could also load this config lazily
+// instead, all you really need is a single root route, you don't need to
+// colocate the entire config).
+render((
+    routes
+), document.getElementById('root'))

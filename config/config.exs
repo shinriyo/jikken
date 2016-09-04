@@ -5,6 +5,16 @@
 # is restricted to this project.
 use Mix.Config
 
+config :jikken, Jikken.Repo,
+  adapter: Sqlite.Ecto,
+  database: "jikken.sqlite3"
+  #adapter: Ecto.Adapters.Postgres,
+  #database: "jikken_repo",
+  #username: "user",
+  #password: "pass",
+  #hostname: "localhost"
+
+
 # General application configuration
 config :jikken,
   ecto_repos: [Jikken.Repo]

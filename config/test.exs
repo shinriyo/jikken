@@ -11,9 +11,11 @@ config :logger, level: :warn
 
 # Configure your database
 config :jikken, Jikken.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "jikken_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  #adapter: Ecto.Adapters.Postgres,
+  #username: "postgres",
+  #password: "postgres",
+  #database: "jikken_test",
+  #hostname: "localhost",
+  #pool: Ecto.Adapters.SQL.Sandbox
+  adapter: Sqlite.Ecto,
+  database: "jikken_test.sqlite3"
