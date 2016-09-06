@@ -20,7 +20,7 @@
   </head>
 
   <body>
-    <h1>Hello, React - Redux!</h1>
+    <h1>Hello, React!</h1>
     <div class="container" id="content">
     </div>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

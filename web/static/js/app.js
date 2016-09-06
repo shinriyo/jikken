@@ -1,3 +1,7 @@
+import React from 'react';
+var ReactDOM = require('react-dom');
+import $ from 'jquery';
+
 var SearchPanel = React.createClass({
     render: function() {
         return (
@@ -248,4 +252,4 @@ var BookPanel = React.createClass({
     },
 });
 
-React.render(<BookPanel url='/api/books/' />, document.getElementById('content'));
+ReactDOM.render(<BookPanel url='/api/books/' />, document.getElementById('content'));
