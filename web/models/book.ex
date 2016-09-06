@@ -3,9 +3,6 @@ defmodule Jikken.Book do
 
   schema "books" do
     field :title, :string
-    field :publish, Ecto.Date
-    belongs_to :sub_category, Jikken.SubCategory
-    belongs_to :author, Jikken.Author
 
     timestamps()
   end
@@ -15,7 +12,7 @@ defmodule Jikken.Book do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :publish])
-    # |> validate_required([:title, :publish])
+    |> cast(params, [:title])
+    # |> validate_required([:title])
   end
 end

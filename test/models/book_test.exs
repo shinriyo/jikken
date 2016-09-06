@@ -3,7 +3,7 @@ defmodule Jikken.BookTest do
 
   alias Jikken.Book
 
-  @valid_attrs %{publish: %{day: 17, month: 4, year: 2010}, title: "some content"}
+  @valid_attrs %{title: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
