@@ -15,7 +15,7 @@ var SearchPanel = React.createClass({
         )
     },
     onSearchChanged: function() {
-        var query = React.findDOMNode(this.refs.search).value;
+        var query = ReactDOM.findDOMNode(this.refs.search).value;
         this.props.onSearchChanged(query);
     }
 });
@@ -77,8 +77,8 @@ var BookForm = React.createClass({
         );
     },
     onChange: function() {
-        var title = React.findDOMNode(this.refs.title).value;
-        var category = React.findDOMNode(this.refs.category).value;
+        var title = ReactDOM.findDOMNode(this.refs.title).value;
+        var category = ReactDOM.findDOMNode(this.refs.category).value;
         this.props.handleChange(title, category);
     }
 });
