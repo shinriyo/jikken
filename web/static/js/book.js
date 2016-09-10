@@ -38,7 +38,6 @@ var BookTableRow = React.createClass({
 var BookTable = React.createClass({
     render: function() {
         var rows = [];
-        console.log(this.props.books);
         for(var i = 0; i < this.props.books.length; i++) {
             var book = this.props.books[i];
             rows.push(<BookTableRow key={book.id} book={book} handleEditClickPanel={this.props.handleEditClickPanel}  />);
@@ -147,7 +146,6 @@ var BookPanel = React.createClass({
     },
     // Edit押下した瞬間
     handleEditClickPanel: function(id) {
-        console.log(id);
         var book = $.extend({}, this.state.books.filter(function(x) {
             return x.id == id;
         })[0] );
@@ -159,7 +157,6 @@ var BookPanel = React.createClass({
     },
     // 入力した瞬間
     handleChange: function(title, category) {
-        console.log(title);
         this.setState({
             editingBook: {
                 title: title,
@@ -174,7 +171,6 @@ var BookPanel = React.createClass({
         });
     },    
     reloadBooks: function(query) {
-        console.log(this.props.url);
         $.ajax({
             // url: this.props.url+'?search='+query,
             url: this.props.url,
@@ -186,10 +182,8 @@ var BookPanel = React.createClass({
             },
             cache: false,
             success: function(data) {
-        console.log(data);
                 this.setState({
                     books: data.data.reverse(),
-                    // books: data.reverse(),
                     search: query
                 });
             }.bind(this),
