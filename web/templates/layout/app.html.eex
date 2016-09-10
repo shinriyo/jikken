@@ -17,7 +17,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" integrity="sha256-K3Njjl2oe0gjRteXwX01fQD5fkk9JFFBdUHy/h38ggY=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha256-2YQRJMXD7pIAPHiXr0s+vlRWA7GYJEK0ARns7k2sbHY=" crossorigin="anonymous" />
-    <link rel="stylesheet" type="text/css" href="/js/jquery-ui-1.10.3.custom/css/sunny/jquery-ui-1.10.3.custom.min.css" />
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/cssloader.css") %>">
  
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -29,7 +29,7 @@
     </div>
 
     <main role="main">
-      <%= render @view_module, @view_template, assigns %>
+      <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
      </main>
   </body>
 </html>
