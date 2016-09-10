@@ -11,9 +11,13 @@
 
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <!-- コレは自家 -->
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/normalize.css") %>">
+    <!--link rel="stylesheet" href="<%= static_path(@conn, "/css/normalize.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/skeleton.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.min.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.min.css") %>"-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" integrity="sha256-K3Njjl2oe0gjRteXwX01fQD5fkk9JFFBdUHy/h38ggY=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" integrity="sha256-2YQRJMXD7pIAPHiXr0s+vlRWA7GYJEK0ARns7k2sbHY=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="/js/jquery-ui-1.10.3.custom/css/sunny/jquery-ui-1.10.3.custom.min.css" />
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/cssloader.css") %>">
  
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +27,9 @@
     <h1>Hello, React!</h1>
     <div class="container" id="content">
     </div>
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
+    <main role="main">
+      <%= render @view_module, @view_template, assigns %>
+     </main>
   </body>
 </html>
