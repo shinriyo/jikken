@@ -3,7 +3,7 @@ defmodule Jikken.BookTest do
 
   alias Jikken.Book
 
-  @valid_attrs %{title: "some content"}
+  @valid_attrs %{category: "some content", title: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

@@ -3,6 +3,7 @@ defmodule Jikken.Book do
 
   schema "books" do
     field :title, :string
+    field :category, :string
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule Jikken.Book do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title])
-    # |> validate_required([:title])
+    |> cast(params, [:title, :category])
+    #|> validate_required([:title, :category])
   end
 end

@@ -4,6 +4,7 @@ defmodule Jikken.Repo.Migrations.CreateBook do
   def change do
     create table(:books) do
       add :title, :string
+      add :category, :string
 
       timestamps()
     end

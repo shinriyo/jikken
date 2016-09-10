@@ -3,7 +3,19 @@
 SQLite
 
 ```
-mix phoenix.gen.json Book books title:string 
+mix phoenix.gen.json Book books title:string category:string 
+```
+
+テスト
+
+GET
+```
+curl -v -H "Accept: application/json" -H "Content-type: application/json" http://localhost:4000/api/books
+```
+
+POST
+```
+curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"book": {"title": "タイトル", "category": "内容" }}' http://localhost:4000/api/books
 ```
 
 AuthorConrtoller

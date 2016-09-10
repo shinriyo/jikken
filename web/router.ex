@@ -23,8 +23,8 @@ defmodule Jikken.Router do
 
   # Other scopes may use custom stacks.
   scope "/api", Jikken do
-    #  get "/authors/get_author_number", AuthorController, :get_author_number
+      pipe_through :api
+      #  get "/authors/get_author_number", AuthorController, :get_author_number
       resources "/books", BookController, except: [:new, :edit]
-  #   pipe_through :api
   end
 end

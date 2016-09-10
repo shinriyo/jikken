@@ -11,6 +11,7 @@ defmodule Jikken.BookView do
 
   def render("book.json", %{book: book}) do
     %{id: book.id,
-      title: book.title}
+      title: book.title,
+      category: book.category}
   end
 end

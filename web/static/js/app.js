@@ -38,9 +38,13 @@ var BookTableRow = React.createClass({
 var BookTable = React.createClass({
     render: function() {
         var rows = [];
-        this.props.books.forEach(function(book) {
+        for(var i = 0; i < this.props.books.length; i++) {
             rows.push(<BookTableRow key={book.id} book={book} handleEditClickPanel={this.props.handleEditClickPanel}  />);
-        }.bind(this));
+        }
+        // なぜかforEachできない
+        // this.props.books.forEach(function(book) {
+        //     rows.push(<BookTableRow key={book.id} book={book} handleEditClickPanel={this.props.handleEditClickPanel}  />);
+        // }.bind(this));
         return (
             <table>
                 <thead>
@@ -209,7 +213,13 @@ var BookPanel = React.createClass({
                 url: this.props.url,
                 dataType: 'json',
                 method: 'POST',
-                data:this.state.editingBook,
+                // data:this.state.editingBook,
+                data: JSON.stringify({book:this.state.editingBook}),
+                // これら必須
+                contentType: 'application/json',
+                beforeSend: function(req) {
+                    req.setRequestHeader('Accept', 'application/json');
+                },
                 cache: false,
                 success: function(data) {
                     this.setState({

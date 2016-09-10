@@ -2,7 +2,7 @@ defmodule Jikken.BookControllerTest do
   use Jikken.ConnCase
 
   alias Jikken.Book
-  @valid_attrs %{title: "some content"}
+  @valid_attrs %{category: "some content", title: "some content"}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -18,7 +18,8 @@ defmodule Jikken.BookControllerTest do
     book = Repo.insert! %Book{}
     conn = get conn, book_path(conn, :show, book)
     assert json_response(conn, 200)["data"] == %{"id" => book.id,
-      "title" => book.title}
+      "title" => book.title,
+      "category" => book.category}
   end
 
   test "renders page not found when id is nonexistent", %{conn: conn} do
