@@ -9,13 +9,13 @@
 
     <title>Hello Jikken!</title>
 
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <!-- コレは自家 -->
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/normalize.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/skeleton.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/jquery-ui.min.css") %>">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/cssloader.css") %>">
  
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
