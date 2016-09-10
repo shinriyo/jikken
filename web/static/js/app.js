@@ -38,7 +38,9 @@ var BookTableRow = React.createClass({
 var BookTable = React.createClass({
     render: function() {
         var rows = [];
+        console.log(this.props.books);
         for(var i = 0; i < this.props.books.length; i++) {
+            var book = this.props.books[i];
             rows.push(<BookTableRow key={book.id} book={book} handleEditClickPanel={this.props.handleEditClickPanel}  />);
         }
         // なぜかforEachできない
@@ -143,7 +145,9 @@ var BookPanel = React.createClass({
         });
         this.reloadBooks('');
     },
+    // Edit押下した瞬間
     handleEditClickPanel: function(id) {
+        console.log(id);
         var book = $.extend({}, this.state.books.filter(function(x) {
             return x.id == id;
         })[0] );
@@ -153,7 +157,9 @@ var BookPanel = React.createClass({
             message: ''
         });
     },
+    // 入力した瞬間
     handleChange: function(title, category) {
+        console.log(title);
         this.setState({
             editingBook: {
                 title: title,
@@ -168,13 +174,22 @@ var BookPanel = React.createClass({
         });
     },    
     reloadBooks: function(query) {
+        console.log(this.props.url);
         $.ajax({
-            url: this.props.url+'?search='+query,
+            // url: this.props.url+'?search='+query,
+            url: this.props.url,
             dataType: 'json',
+            // これら必須
+            contentType: 'application/json',
+            beforeSend: function(req) {
+                req.setRequestHeader('Accept', 'application/json');
+            },
             cache: false,
             success: function(data) {
+        console.log(data);
                 this.setState({
-                    books: data,
+                    books: data.data.reverse(),
+                    // books: data.reverse(),
                     search: query
                 });
             }.bind(this),
@@ -189,11 +204,18 @@ var BookPanel = React.createClass({
     handleSubmitClick: function(e) {
         e.preventDefault();
         if(this.state.editingBook.id) {
+            // 編集
             $.ajax({
                 url: this.props.url+this.state.editingBook.id,
                 dataType: 'json',
                 method: 'PUT',
-                data:this.state.editingBook,
+                // これら必須
+                contentType: 'application/json',
+                beforeSend: function(req) {
+                    req.setRequestHeader('Accept', 'application/json');
+                },
+                // data:this.state.editingBook,
+                data: JSON.stringify({book:this.state.editingBook}),
                 cache: false,
                 success: function(data) {
                     this.setState({
@@ -209,6 +231,7 @@ var BookPanel = React.createClass({
                 }.bind(this)
             });
         } else {
+            // 新規
             $.ajax({
                 url: this.props.url,
                 dataType: 'json',
