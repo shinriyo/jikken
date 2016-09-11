@@ -279,4 +279,4 @@ var BookPanel = React.createClass({
     },
 });
 
-ReactDOM.render(<BookPanel url='/api/books/' />, document.getElementById('content'));
+ReactDOM.render(<BookPanel url='/api/books/' />, document.getElementById('book-content'));
