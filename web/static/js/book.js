@@ -2,24 +2,6 @@ import React from 'react';
 var ReactDOM = require('react-dom');
 import $ from 'jquery';
 
-var SearchPanel = React.createClass({
-    render: function() {
-        return (
-            <div className="row">
-                <div className="one-fourth column">
-                    Filter: &nbsp;
-                    <input ref='search' type='text' value={this.props.search} onChange={this.onSearchChanged} />
-                    {this.props.search?<button onClick={this.props.onClearSearch} >x</button>:null}
-                </div>
-            </div>
-        )
-    },
-    onSearchChanged: function() {
-        var query = ReactDOM.findDOMNode(this.refs.search).value;
-        this.props.onSearchChanged(query);
-    }
-});
-
 var BookTableRow = React.createClass({
     render: function() {
         return (
@@ -96,7 +78,6 @@ var BookPanel = React.createClass({
                 title:"",
                 category:"",
             },
-            search:"",
             message:""
         };
     },
@@ -104,11 +85,6 @@ var BookPanel = React.createClass({
         return(
             <div className="row">
                 <div className="one-half column">
-                    <SearchPanel
-                        search={this.state.search}
-                        onSearchChanged={this.onSearchChanged}
-                        onClearSearch={this.onClearSearch}
-                    />
                     <BookTable books={this.state.books} handleEditClickPanel={this.handleEditClickPanel} />
                 </div>
                 <div className="one-half column">
@@ -125,23 +101,6 @@ var BookPanel = React.createClass({
         );
     },
     componentDidMount: function() {
-        this.reloadBooks('');
-    },
-    onSearchChanged: function(query) {
-        if (this.promise) {
-            clearInterval(this.promise)
-        }
-        this.setState({
-            search: query
-        });
-        this.promise = setTimeout(function () {
-            this.reloadBooks(query);
-        }.bind(this), 200);
-    },
-    onClearSearch: function() {
-        this.setState({
-            search: ''
-        });
         this.reloadBooks('');
     },
     // Edit押下した瞬間
