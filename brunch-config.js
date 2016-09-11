@@ -3,8 +3,9 @@ exports.config = {
   files: {
     javascripts: {
       // joinTo: "js/app.js"
-      joinTo: ["js/app.js", "js/book.js"]
-
+      joinTo: {
+          'js/app.js': /^(\/js)/
+      },
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
       // joinTo: {
